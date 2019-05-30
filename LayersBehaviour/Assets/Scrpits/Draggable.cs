@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 
 public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler {
@@ -73,9 +74,44 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        int LayerIndex = placeHolder.transform.GetSiblingIndex();
+        DestroyImmediate(placeHolder);
         this.transform.SetParent(parentToReturnTo); // move the layer to orignal parent.
-        this.transform.SetSiblingIndex(placeHolder.transform.GetSiblingIndex()); // set same index of the selected layer as placeholder.
+        this.transform.SetSiblingIndex(LayerIndex); // set same index of the selected layer as placeholder.
         this.GetComponent<CanvasGroup>().blocksRaycasts = true;// re-enable the raycast hit.
-        Destroy(placeHolder);
+        UpdateLayer(LayerIndex);
+    }
+    void UpdateLayer(int LayerIndex)
+    {
+        LinkedListNode<Layer> thisLayerNode = transform.GetComponentInChildren<LayerElementProperty>().listNode;
+        LinkedListNode<Layer> layerNodeBelow = null;
+        if (LayerIndex + 1 < parentToReturnTo.childCount)
+        {
+            layerNodeBelow = parentToReturnTo.GetChild(LayerIndex + 1).GetComponentInChildren<LayerElementProperty>().listNode;
+        }
+        if (Input.GetKey(KeyCode.LeftAlt))
+        {
+            if (layerNodeBelow != null)
+            {
+                thisLayerNode.Value.state = LayerStates.Chained;
+                switch (layerNodeBelow.Value.state)
+                {
+                    case LayerStates.ChainTarget:
+                        break;
+                    case LayerStates.Chained:
+                        break;
+                    case LayerStates.Unchained:
+                        layerNodeBelow.Value.state = LayerStates.ChainTarget;
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+    
+        GameObject.FindObjectOfType<Manager>().LayerMovedTo(
+            thisLayerNode,
+            layerNodeBelow
+            );
     }
 }

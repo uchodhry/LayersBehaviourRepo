@@ -6,6 +6,15 @@ public class Layer
 {
     public float value;
     public LayersType layerType;
+    public StackManager chainStackManager;
+    public LayerStates state;
+
+    public Layer()
+    {
+        chainStackManager = new StackManager();
+        state = LayerStates.Unchained;
+    }
+
     public virtual float Compute(float previousValue)
     {
         Debug.LogError("Base Class Reached Leyer Type Missing in setType function.");
@@ -21,7 +30,7 @@ public class Layer
             case LayersType.Subtraction:
                 return new SubtractionLayer();
             case LayersType.Multiplication:
-                return new SubtractionLayer();
+                return new MultiplayLayer();
             case LayersType.Division:
                 return new Layer();
             case LayersType.None:

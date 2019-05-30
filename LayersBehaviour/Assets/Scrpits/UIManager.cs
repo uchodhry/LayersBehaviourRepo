@@ -7,12 +7,12 @@ public class UIManager : MonoBehaviour
 {
     public TMPro.TextMeshProUGUI result;
     // This script manages the UI elements under this group/canvas
-    LayerManager layerManager;
+    Manager layerManager;
     Transform layerStackParent;
 
     private void Start()
     {
-        layerManager = FindObjectOfType<LayerManager>();
+        layerManager = FindObjectOfType<Manager>();
         layerStackParent = transform.Find("LayersGroup/LayerStack/Viewport/Content");
     }
     private void Update()
