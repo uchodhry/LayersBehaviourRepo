@@ -66,7 +66,7 @@
     <Compile Include="Assets\Scrpits\Layer\Manager.cs" />
     <Compile Include="Assets\Scrpits\Layer\MultiplayLayer.cs" />
     <Compile Include="Assets\Scrpits\Layer\SubtractionLayer.cs" />
-    <Compile Include="Assets\Scrpits\LayerPropertyScripts\LayerElementProperty.cs" />
+    <Compile Include="Assets\Scrpits\LayerPropertyScripts\LayerElementBehaviour.cs" />
     <Compile Include="Assets\Scrpits\StackManager.cs" />
     <Compile Include="Assets\Scrpits\UIDragDrop.cs" />
     <Compile Include="Assets\Scrpits\UIManager.cs" />

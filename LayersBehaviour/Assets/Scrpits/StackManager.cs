@@ -32,13 +32,18 @@ public class StackManager
     {
         layerList.AddFirst(layerNode);
     }
+    public void MoveChain (LinkedListNode<Layer> nodeMoved, LinkedListNode<Layer> nodeMovedAfter)
+    {
+        LinkedList<Layer> chainList = nodeMovedAfter.List;
+        MoveLayer(nodeMoved, nodeMovedAfter);
+    }
     public void MoveLayer(LinkedListNode<Layer> nodeMoved, LinkedListNode<Layer> nodeMovedAfter)
     {
-
         nodeMoved.List.Remove(nodeMoved);
         if (nodeMoved.Value.state == LayerStates.Chained)
         {
-            if (nodeMovedAfter.Value.state == LayerStates.Chained)
+            if (nodeMovedAfter != null)
+                if (nodeMovedAfter.Value.state == LayerStates.Chained)
             {
                 if (nodeMovedAfter != null)
                     nodeMovedAfter.List.AddAfter(nodeMovedAfter, nodeMoved);

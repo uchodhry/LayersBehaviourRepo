@@ -24,7 +24,7 @@ public class UIManager : MonoBehaviour
     }
     public void addNewLayer(Transform layerUIObject)
     {
-        LayersType layerTypeToAdd = layerUIObject.GetComponentInChildren<LayerElementProperty>().layerType;
+        LayersType layerTypeToAdd = layerUIObject.GetComponentInChildren<LayerElementBehaviour>().layerType;
         GameObject newLayer = layerManager.prepareNewLayer(layerTypeToAdd);
         newLayer.transform.SetParent(layerStackParent);
         newLayer.transform.SetSiblingIndex(0);

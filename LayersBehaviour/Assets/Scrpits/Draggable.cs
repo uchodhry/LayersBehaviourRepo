@@ -83,15 +83,27 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     }
     void UpdateLayer(int LayerIndex)
     {
-        LinkedListNode<Layer> thisLayerNode = transform.GetComponentInChildren<LayerElementProperty>().listNode;
+        // this layer node.
+        LinkedListNode<Layer> thisLayerNode = transform.GetComponentInChildren<LayerElementBehaviour>().listNode;
+        // node of the layer below this layer.
         LinkedListNode<Layer> layerNodeBelow = null;
+        // node of the layer above this layer.
+        LinkedListNode<Layer> layerNodeAbove = null;
+
         if (LayerIndex + 1 < parentToReturnTo.childCount)
         {
-            layerNodeBelow = parentToReturnTo.GetChild(LayerIndex + 1).GetComponentInChildren<LayerElementProperty>().listNode;
+            // gets the layer node for layer below if its index is not greater the last object.
+            layerNodeBelow = parentToReturnTo.GetChild(LayerIndex + 1).GetComponentInChildren<LayerElementBehaviour>().listNode;
         }
-        if (Input.GetKey(KeyCode.LeftAlt))
+        if (LayerIndex - 1 >= 0)
         {
-            if (layerNodeBelow != null)
+            // gets the layer node for layer above if its index is not less the last zero.
+            layerNodeAbove = parentToReturnTo.GetChild(LayerIndex - 1).GetComponentInChildren<LayerElementBehaviour>().listNode;
+        }
+
+        if (Input.GetKey(KeyCode.LeftAlt)) // checks if user is holding left alt key.
+        {
+            if (layerNodeBelow != null) // There is a valid layer below.
             {
                 thisLayerNode.Value.state = LayerStates.Chained;
                 switch (layerNodeBelow.Value.state)

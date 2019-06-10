@@ -26,9 +26,9 @@ public class Manager : MonoBehaviour
         defination.transform.SetParent(container.transform); // add the UI defination as chiled of container.
         
         Layer tempLayer = Layer.getLayerOfType(type); // get the type of class from factory class.
-        tempLayer.value = defination.GetComponent<LayerElementProperty>().getInputFieldValue(); // get the default Value of the layer.
+        tempLayer.value = defination.GetComponent<LayerElementBehaviour>().getInputFieldValue(); // get the default Value of the layer.
         tempLayer.layerType = type; // set the type of the layer this should not be used if every thing work in drived classes.
-        defination.GetComponent<LayerElementProperty>().listNode = mainStack.AddNewLayer(tempLayer);// add the selected Layer type object to the Stack;
+        defination.GetComponent<LayerElementBehaviour>().listNode = mainStack.AddNewLayer(tempLayer);// add the selected Layer type object to the Stack;
         return container; // return the new Gameobject with selected type UI defination in a container.
     }
 
@@ -47,7 +47,7 @@ public class Manager : MonoBehaviour
     {
         foreach (GameObject defination in layersDefinations)
         {
-            if (defination.GetComponent<LayerElementProperty>().layerType == type)
+            if (defination.GetComponent<LayerElementBehaviour>().layerType == type)
                 return Instantiate(defination);
         }
         return null;
