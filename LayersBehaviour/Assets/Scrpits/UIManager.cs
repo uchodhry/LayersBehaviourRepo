@@ -15,12 +15,10 @@ public class UIManager : MonoBehaviour
         layerManager = FindObjectOfType<Manager>();
         layerStackParent = transform.Find("LayersGroup/LayerStack/Viewport/Content");
     }
-    private void Update()
+  
+    public void UpdateResult(string newValue)
     {
-        if (Input.GetKeyUp(KeyCode.C))
-        {
-            result.text = layerManager.CalculateLayerStack().ToString();
-        }
+        result.text = newValue;
     }
     public void addNewLayer(Transform layerUIObject)
     {
@@ -28,6 +26,7 @@ public class UIManager : MonoBehaviour
         GameObject newLayer = layerManager.prepareNewLayer(layerTypeToAdd);
         newLayer.transform.SetParent(layerStackParent);
         newLayer.transform.SetSiblingIndex(0);
+        layerManager.StackUpdated();
     }
 }
 

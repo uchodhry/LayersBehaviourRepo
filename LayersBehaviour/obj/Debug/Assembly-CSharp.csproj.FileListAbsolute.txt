@@ -279,3 +279,4 @@ C:\Users\Usman\MyFolder\UnityProjects\LayersBehaviourRepo\LayersBehaviour\obj\De
 C:\Users\Usman\MyFolder\UnityProjects\LayersBehaviourRepo\LayersBehaviour\obj\Debug\Assembly-CSharp.csproj.CopyComplete
 C:\Users\Usman\MyFolder\UnityProjects\LayersBehaviourRepo\LayersBehaviour\obj\Debug\Assembly-CSharp.dll
 C:\Users\Usman\MyFolder\UnityProjects\LayersBehaviourRepo\LayersBehaviour\obj\Debug\Assembly-CSharp.pdb
+C:\Users\Usman\MyFolder\UnityProjects\LayersBehaviourRepo\LayersBehaviour\obj\Debug\Assembly-CSharp.csprojAssemblyReference.cache

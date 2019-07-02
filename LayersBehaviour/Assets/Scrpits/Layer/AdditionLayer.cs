@@ -6,6 +6,18 @@ public class AdditionLayer : Layer
 {
     public override float Compute(float previousValue)
     {
-        return previousValue + base.value;
+        if (float.IsNaN(previousValue))
+        {
+            previousValue = 0;
+        }
+        if (base.state == LayerStates.ChainTarget)// if this node is a chain target it needs to calculate the stack first.
+        {
+            return previousValue + base.value + base.chainStack.CalculateStack();
+        }
+        else
+        {
+            return previousValue + base.value;
+        }
     }
+   
 }
